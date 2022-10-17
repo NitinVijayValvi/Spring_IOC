@@ -1,0 +1,127 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+	<bean id="dateFormater" class="java.text.SimpleDateFormat">
+		<constructor-arg value="dd-MM-yyyy hh:mm:ss" />
+	</bean>
+	<!--Movie Data -->
+	<bean id="movie1" class="com.yash.springioc1.Movie">
+		<property name="mid" value="1"></property>
+		<property name="moviename" value="Avatar"></property>
+		<property name="timings">
+			<bean factory-bean="dateFormater" factory-method="parse">
+				<constructor-arg value="24-10-2022 11:00:00" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="movie2" class="com.yash.springioc1.Movie">
+		<property name="mid" value="2"></property>
+		<property name="moviename" value="Terminal lIST"></property>
+		<property name="timings">
+			<bean factory-bean="dateFormater" factory-method="parse">
+				<constructor-arg value="25-10-2022 02:00:00" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="movie3" class="com.yash.springioc1.Movie">
+		<property name="mid" value="3"></property>
+		<property name="moviename" value="Terminal lIST"></property>
+		<property name="timings">
+			<bean factory-bean="dateFormater" factory-method="parse">
+				<constructor-arg value="24-10-2022 09:00:00" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="movie4" class="com.yash.springioc1.Movie">
+		<property name="mid" value="4"></property>
+		<property name="moviename" value="Terminal lIST"></property>
+		<property name="timings">
+			<bean factory-bean="dateFormater" factory-method="parse">
+				<constructor-arg value="27-10-2022 06:00:00" />
+			</bean>
+		</property>
+	</bean>
+	<!--Cinema Hall data -->
+
+	<bean id="cinemahall1" class="com.yash.springioc1.CinemaHall">
+		<property name="cid" value="1"></property>
+		<property name="cinemahallname" value="INOX"></property>
+		<property name="moviel">
+			<set>
+				<ref bean="movie1"></ref>
+				<ref bean="movie2"></ref>
+			</set>
+
+		</property>
+	</bean>
+
+	<bean id="cinemahall2" class="com.yash.springioc1.CinemaHall">
+		<property name="cid" value="2"></property>
+		<property name="cinemahallname" value="PVR"></property>
+		<property name="moviel">
+			<set>
+				<ref bean="movie2"></ref>
+				<ref bean="movie3"></ref>
+			</set>
+
+		</property>
+	</bean>
+	<bean id="cinemahall3" class="com.yash.springioc1.CinemaHall">
+		<property name="cid" value="3"></property>
+		<property name="cinemahallname" value="Inox"></property>
+		<property name="moviel">
+			<set>
+				<ref bean="movie4"></ref>
+				<ref bean="movie2"></ref>
+			</set>
+
+		</property>
+	</bean>
+	<bean id="cinemahall4" class="com.yash.springioc1.CinemaHall">
+		<property name="cid" value="4"></property>
+		<property name="cinemahallname" value="ESquare"></property>
+		<property name="moviel">
+			<set>
+				<ref bean="movie1"></ref>
+				<ref bean="movie4"></ref>
+			</set>
+
+		</property>
+	</bean>
+
+
+
+	<bean id="city1" class="com.yash.springioc1.City">
+		<property name="cityid" value="101"></property>
+		<property name="cityname" value="Pune"></property>
+		<property name="cinemaHall">
+			<set>
+				<ref bean="cinemahall1"></ref>
+				<ref bean="cinemahall2"></ref>
+				<ref bean="cinemahall3"></ref>
+			</set>
+
+		</property>
+
+	</bean>
+	<bean id="city2" class="com.yash.springioc1.City">
+		<property name="cityid" value="102"></property>
+		<property name="cityname" value="Mumbai"></property>
+		<property name="cinemaHall">
+			<set>
+				<ref bean="cinemahall4"></ref>
+				<ref bean="cinemahall2"></ref>
+
+			</set>
+
+		</property>
+
+	</bean>
+</beans>
+
